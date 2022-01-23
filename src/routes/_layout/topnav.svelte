@@ -1,6 +1,6 @@
 <script>
   import { Collapse, Navbar, NavbarBrand, NavbarToggler, Input, Form } from 'sveltestrap'
-  import SiteNav from './_sitenav.svelte'
+  import SiteNav from './sitenav.svelte'
 
   let isOpen = false
   function toggle() {isOpen = !isOpen}
