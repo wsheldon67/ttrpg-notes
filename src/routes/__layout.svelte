@@ -1,13 +1,13 @@
 <script>
 	import '../app.scss';
-  import { Collapse, Navbar, NavbarBrand, NavbarToggler, Input, Form } from 'sveltestrap'
+  import { Collapse, Navbar, NavbarBrand, NavbarToggler, Input, Form, NavItem, Button, Container } from 'sveltestrap'
   import SiteNav from './_sitenav.svelte'
 
   let isOpen = false
   function toggle() {isOpen = !isOpen}
 </script>
 
-<Navbar color="dark" dark>
+<Navbar color="dark" dark class="fixed-top">
   <NavbarToggler on:click={toggle} />
   <Form class="flex-grow-1 mx-1">
     <Input type="search" placeholder="search" />
@@ -18,4 +18,12 @@
   </Collapse>
 </Navbar>
 
-<slot />
+<Container>
+  <slot />
+</Container>
+
+<Navbar class="fixed-bottom" color="dark" dark>
+  <NavItem>
+    <Button>Click</Button>
+  </NavItem>
+</Navbar>

@@ -31,3 +31,8 @@
 @import 'bootstrap/scss/helpers';
 @import 'bootstrap/scss/utilities';
 @import 'bootstrap/scss/utilities/api';
+
+body {
+  padding: 3.5em 0em;
+  overflow: auto;
+}
