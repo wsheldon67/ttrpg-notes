@@ -1,17 +1,29 @@
 <script>
-  import {Nav, NavItem, Icon, Button, Styles, Tooltip} from 'sveltestrap'
-  import IconButton from '$lib/IconButton.svelte'
+  import { Nav } from 'sveltestrap'
+  import Widget from './widget.svelte'
+
+  const open = {
+    time: false,
+    notes: false,
+    rules: false
+  }
+  let lastOpen
+
+  function click(e) {
+    const {id, isOpen} = e.detail
+    if (lastOpen && isOpen){open[lastOpen] = false}
+    if (isOpen){lastOpen = id}
+  }
 </script>
 
-<Styles />
 <Nav class="fixed-bottom justify-content-start" dark color="dark">
-  <NavItem class="ms-1">
-    <IconButton name="alarm" id="time" tip="Adjust game time" />
-  </NavItem>
-  <NavItem class="ms-1">
-    <IconButton name="pen" id="note" tip="Take a note" />
-  </NavItem>
-  <NavItem class="ms-1">
-    <IconButton name="book" id="compendium" tip="Look up rules" />
-  </NavItem>
+  <Widget id='time' name='alarm' tip='Adjust game time' on:click={click} isOpen={open.time}>
+    //TODO time adjust
+  </Widget>
+  <Widget id='notes' name='pen' tip='Make a note' on:click={click} isOpen={open.notes}>
+    //TODO quick note
+  </Widget>
+  <Widget id='rules' name='book' tip='look up a rule' on:click={click} isOpen={open.rules}>
+    //TODO rule lookup
+  </Widget>
 </Nav>
