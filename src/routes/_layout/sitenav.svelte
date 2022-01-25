@@ -4,6 +4,6 @@
 
 <Nav navbar>
   <NavItem>
-    <NavLink href='./notes'>Notes</NavLink>
+    <NavLink href='./time'>Time</NavLink>
   </NavItem>
 </Nav>

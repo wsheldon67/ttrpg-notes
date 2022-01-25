@@ -1,6 +1,7 @@
 <script>
   import { Nav } from 'sveltestrap'
   import Widget from './widget.svelte'
+  import FullTime from '../time/_FullTime.svelte'
 
   const open = {
     time: false,
@@ -18,7 +19,7 @@
 
 <Nav class="fixed-bottom justify-content-start" dark color="dark">
   <Widget id='time' name='alarm' tip='Adjust game time' on:click={click} isOpen={open.time}>
-    //TODO time adjust
+    <FullTime />
   </Widget>
   <Widget id='notes' name='pen' tip='Make a note' on:click={click} isOpen={open.notes}>
     //TODO quick note
