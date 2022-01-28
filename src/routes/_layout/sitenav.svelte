@@ -5,5 +5,6 @@
 <Nav navbar>
   <NavItem>
     <NavLink href='./time'>Time</NavLink>
+    <NavLink href='./notes'>Notes</NavLink>
   </NavItem>
 </Nav>
