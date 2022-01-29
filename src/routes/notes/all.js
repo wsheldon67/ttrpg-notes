@@ -1,12 +1,9 @@
-import clientPromise from "$lib/db";
+import { find } from "$lib/db";
+
 
 export async function post (req) {
-  const connection = await clientPromise;
-  const db = connection.db('ttrpg')
-  const col = db.collection('notes')
-  const notes = await col.find().toArray()
-  console.log(notes)
+  const all_notes = await find('notes')
   return {
-    body: notes
+    body: all_notes
   }
 }

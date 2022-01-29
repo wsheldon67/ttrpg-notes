@@ -1,7 +1,8 @@
-import { MongoClient } from "mongodb";
-const uri = "mongodb+srv://wsheldon:5FnJsnasstGDuz2Q@pathfinder.7k1k9.gcp.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+import clientPromise from "$lib/db-connect"
 
-clientPromise = client.connect()
-
-export default clientPromise
+export async function find(collection, query, projection) {
+  const connection = await clientPromise;
+  const db = connection.db('ttrpg')
+  const col = db.collection(collection)
+  return await col.find(query, projection).toArray()
+}
