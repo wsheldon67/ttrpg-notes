@@ -15,14 +15,14 @@
 </script>
 
 <style>
-  div {
+  .cont {
     min-width: 12em;
   }
 </style>
 
 
-<div class='row'>
+<div class='row cont'>
 <Button class='col-3' color='danger' on:click={minus}>-</Button>
-<label class='col text-center'>{txt}</label>
+<div class='col text-center'>{txt}</div>
 <Button class='col-3' color='success' on:click={plus}>+</Button>
 </div>

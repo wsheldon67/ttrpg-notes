@@ -4,9 +4,9 @@
 </script>
 
 {#await promise}
-<p>loading...</p>
+  <p>loading...</p>
 {:then result}
-<p>{JSON.stringify(result)}</p>
+  <p>{JSON.stringify(result)}</p>
 {:catch error}
-<p>{error}</p>
+  <p>{error}</p>
 {/await}
