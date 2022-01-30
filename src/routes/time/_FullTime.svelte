@@ -12,6 +12,5 @@
 
   {#each opts as opt}
   <TimeAdder {...opt} />
-
   {/each}
   <TimeAdder txt='Next Morning' val={0}/>

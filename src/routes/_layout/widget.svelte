@@ -1,10 +1,8 @@
 <script>
-  import { NavItem, Button, Icon, Popover, Tooltip } from 'sveltestrap'
   import { createEventDispatcher } from 'svelte'
   const dispatch = createEventDispatcher()
 
   export let id
-  export let name
   export let tip
   export let isOpen = false
 
@@ -14,14 +12,15 @@
 </script>
 
 
-<NavItem class='ms-2'>
-  <Button {id} on:click={click}>
-    <Icon {name}/>
-  </Button>
-  <Tooltip target={id} placement='right'>
-    {tip}
-  </Tooltip>
-  <Popover target={id} placement='top' bind:isOpen>
+<div>
+  <button {id} on:click={click}>
+    Icon
+  </button>
+  <div target={id} placement='right'>
+    {tip}tooltip
+  </div>
+  <div target={id} placement='top' >
     <slot/>
-  </Popover>
-</NavItem>
+    popover
+  </div>
+</div>

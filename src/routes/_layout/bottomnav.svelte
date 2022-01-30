@@ -1,5 +1,4 @@
 <script>
-  import { Nav } from 'sveltestrap'
   import Widget from './widget.svelte'
   import FullTime from '../time/_FullTime.svelte'
 
@@ -17,7 +16,7 @@
   }
 </script>
 
-<Nav class="fixed-bottom justify-content-start" dark color="dark">
+<div>
   <Widget id='time' name='alarm' tip='Adjust game time' on:click={click} isOpen={open.time}>
     <FullTime />
   </Widget>
@@ -27,4 +26,4 @@
   <Widget id='rules' name='book' tip='look up a rule' on:click={click} isOpen={open.rules}>
     //TODO rule lookup
   </Widget>
-</Nav>
+</div>
