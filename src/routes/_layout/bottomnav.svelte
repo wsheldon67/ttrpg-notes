@@ -17,13 +17,13 @@
 </script>
 
 <div>
-  <Widget id='time' name='alarm' tip='Adjust game time' on:click={click} isOpen={open.time}>
+  <Widget id='time' icon='alarm' tip='Adjust game time' on:click={click} isOpen={open.time}>
     <FullTime />
   </Widget>
-  <Widget id='notes' name='pen' tip='Make a note' on:click={click} isOpen={open.notes}>
+  <Widget id='notes' icon='pen' tip='Make a note' on:click={click} isOpen={open.notes}>
     //TODO quick note
   </Widget>
-  <Widget id='rules' name='book' tip='look up a rule' on:click={click} isOpen={open.rules}>
+  <Widget id='rules' icon='book' tip='look up a rule' on:click={click} isOpen={open.rules}>
     //TODO rule lookup
   </Widget>
 </div>

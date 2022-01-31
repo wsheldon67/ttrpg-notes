@@ -20,6 +20,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@popperjs/core": "^2.11.2",
 		"dotenv": "^14.3.2",
 		"mongodb": "^4.3.1"
 	}

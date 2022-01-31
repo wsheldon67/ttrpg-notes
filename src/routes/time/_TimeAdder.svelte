@@ -1,5 +1,4 @@
 <script>
-  import { Button, Container } from 'sveltestrap'
   import { createEventDispatcher } from 'svelte'
   const dispatch = createEventDispatcher()
 
@@ -22,9 +21,9 @@
 
 
 <div class='row cont'>
-<Button class='col-3' color='danger' on:click={minus}>-</Button>
+<button class='col-3' color='danger' on:click={minus}>-</button>
 <div class='col row align-items-center'>
   <div class='text-center'>{txt}</div>
 </div>
-<Button class='col-3' color='success' on:click={plus}>+</Button>
+<button class='col-3' color='success' on:click={plus}>+</button>
 </div>
