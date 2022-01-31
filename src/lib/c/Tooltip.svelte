@@ -6,8 +6,11 @@
   export let show = false
   export let placement = 'top'
 
-  function toggle() {
-    show = !show
+  function show_tip() {
+    show = true
+  }
+  function hide_tip() {
+    show = false
   }
 </script>
 <style>
@@ -15,9 +18,15 @@
     padding: .25em;
   }
 </style>
-<button use:usePopperElement on:click={toggle}>
-  <slot name="button"/>
-</button>
+<span
+  use:usePopperElement
+  on:mouseenter={show_tip}
+  on:focus={show_tip}
+  on:mouseleave={hide_tip}
+  on:blur={hide_tip}
+  >
+  <slot name="element" />
+</span>
 {#if show}
   <div class='tip' use:usePopperTooltip={{
     placement,
@@ -29,5 +38,5 @@
         }
       }
     ]
-  }}><slot name="content"/></div>
+  }}><slot name="tip" /></div>
 {/if}

@@ -1,6 +1,7 @@
 <script>
   import Popover from '$lib/c/Popover.svelte'
-import { createEventDispatcher } from 'svelte'
+  import Tooltip from '$lib/c/Tooltip.svelte'
+  import { createEventDispatcher } from 'svelte'
   const dispatch = createEventDispatcher()
 
   export let id
@@ -17,9 +18,9 @@ import { createEventDispatcher } from 'svelte'
   <button {id} on:click={click}>
     Icon
   </button>
-  <div target={id} placement='right'>
+  <Tooltip target={id} placement='right'>
     {tip}tooltip
-  </div>
+  </Tooltip>
   <Popover>
     <slot />
   </Popover>
