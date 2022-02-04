@@ -14,16 +14,27 @@
 </script>
 
 <style>
-  .cont {
+  .row {
+    display: grid;
+    grid-template-columns: 1.5em auto 1.5em;
     min-width: 12em;
+    max-width: 36em;
+  }
+  .minus {
+    background-color: red;
+  }
+  .plus {
+    background-color: green;
+  }
+  .label {
+    text-align: center;
   }
 </style>
 
-
-<div class='row cont'>
-<button class='col-3' color='danger' on:click={minus}>-</button>
-<div class='col row align-items-center'>
-  <div class='text-center'>{txt}</div>
-</div>
-<button class='col-3' color='success' on:click={plus}>+</button>
+<div class='row'>
+  <button class='minus' color='danger' on:click={minus}>-</button>
+  <div class='label'>
+    {txt}
+  </div>
+  <button class='plus' color='success' on:click={plus}>+</button>
 </div>

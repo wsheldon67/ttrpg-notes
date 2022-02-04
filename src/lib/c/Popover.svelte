@@ -23,14 +23,6 @@
 </button>
 {#if show}
   <div class='tip' use:usePopperTooltip={{
-    placement,
-    modifiers: [
-      {
-        name: 'offset',
-        options: {
-          offset: [0, 8]
-        }
-      }
-    ]
+    placement
   }}><slot name="content"/></div>
 {/if}
