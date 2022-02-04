@@ -5,6 +5,7 @@
 
   export let show = false
   export let placement = 'top'
+  export let tip = 'Please provide a tip for this tooltip.'
 
   function show_tip() {
     show = true
@@ -25,7 +26,7 @@
   on:mouseleave={hide_tip}
   on:blur={hide_tip}
   >
-  <slot name="element" />
+  <slot />
 </span>
 {#if show}
   <div class='tip' use:usePopperTooltip={{
@@ -38,5 +39,5 @@
         }
       }
     ]
-  }}><slot name="tip" /></div>
+  }}>{tip}</div>
 {/if}

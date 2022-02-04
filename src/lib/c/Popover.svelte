@@ -1,5 +1,7 @@
 <script>
   import createPopperAction from '../usePopper'
+  import { createEventDispatcher } from 'svelte'
+  const dispatch = createEventDispatcher()
 
   const [usePopperElement, usePopperTooltip] = createPopperAction()
 
@@ -8,6 +10,7 @@
 
   function toggle() {
     show = !show
+    dispatch('click', show)
   }
 </script>
 <style>
