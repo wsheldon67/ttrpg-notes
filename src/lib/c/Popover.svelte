@@ -26,9 +26,6 @@
   .arrow {
     background-color: var(--b4);
   }
-  :global(.tip .cont) {
-    background-color: var(--b4);
-  }
 </style>
 <button use:usePopperElement on:click={toggle}>
   <slot name="button"/>

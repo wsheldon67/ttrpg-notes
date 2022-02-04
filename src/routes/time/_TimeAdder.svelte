@@ -19,6 +19,7 @@
     grid-template-columns: 1.5em auto 1.5em;
     min-width: 12em;
     max-width: 36em;
+    padding-top: 1px;
   }
   .minus, .plus {
     color: var(--at);

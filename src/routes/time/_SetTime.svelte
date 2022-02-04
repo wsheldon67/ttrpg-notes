@@ -1,13 +1,14 @@
 <script>
+  import Icon from "$lib/c/Icon.svelte";
+
   export let value
   
 </script>
 
 <style>
   input {
-    width: 2.8em;
-    border-right: none;
-    border-left: none;
+    width: 2ch;
+    border: none;
     padding-right: 0;
     padding-left: 0;
   }
@@ -17,18 +18,24 @@
     margin: 0;
   }
   .four {
-    width: 2.5em;
+    width: 4ch;
   }
-  i {
-    font-size: 1.5em;
-    width: min-content;
-    padding-left: 1em;
+  .cont {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    height: 1.5em;
+    line-height: 1.5em;
+    border: 2px ridge var(--b4)
   }
-
 </style>
 
-<div class='row'>
-  <i class='bi-clock'></i>
-  <input type='number' class='four form-control' value={value.year} />
-  <input type='number' class='form-control' value={value.month} />
+<div class='cont'>
+  <Icon name='clock' />&nbsp;
+  <input type='number' class='four' value={value.year} />/
+  <input type='number' value={value.month} />/
+  <input type='number' value={value.day} />&nbsp;
+  <input type='number' value={value.hour} />:
+  <input type='number' value={value.minute} />:
+  <input type='number' value={value.second} />
 </div>
