@@ -1,8 +1,22 @@
-/* Write your global styles here, in SCSS syntax. Variables and mixins from the src/variables.scss file are available here without importing */ /* Import only what you need from Bootstrap */
+/* Write your global styles here, in SCSS syntax. Variables and mixins from the src/variables.scss file are available here without importing */
+/* Colors */
+
+:root {
+  --t: #EEE;
+  --b1: #111;
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --t: black;
+    --b1: white;
+  }
+}
+
 /* Defaults */
 * {
-  color: white;
-  background-color: #333333;
+  color: var(--t);
+  background-color: var(--b1);
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 body {
