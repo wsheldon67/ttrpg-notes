@@ -1,24 +1,28 @@
 <script>
   import Icon from "$lib/c/Icon.svelte";
+  import LzNumber from "$lib/c/LZNumber.svelte";
 
-  export let value
+  export let value = {
+    year: 0,
+    month: 0,
+    day: 0,
+    hour: 0,
+    minute: 0,
+    second: 0
+  }
+
+  function change(e, unit) {
+    value[unit] = e.detail
+    console.log(value)
+  }
   
 </script>
 
 <style>
   input {
-    width: 2ch;
     border: none;
     padding-right: 0;
     padding-left: 0;
-  }
-  input::-webkit-outer-spin-button,
-  input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-  .four {
-    width: 4ch;
   }
   .cont {
     display: flex;
@@ -32,10 +36,10 @@
 
 <div class='cont'>
   <Icon name='clock' />&nbsp;
-  <input type='number' class='four' value={value.year} />/
-  <input type='number' value={value.month} />/
-  <input type='number' value={value.day} />&nbsp;
-  <input type='number' value={value.hour} />:
-  <input type='number' value={value.minute} />:
-  <input type='number' value={value.second} />
+  <LzNumber value={value.year} on:change={e => change(e, 'year')}/>/
+  <LzNumber value={value.month} on:change={(e) => change(e, 'month')} />/
+  <LzNumber value={value.day} on:change={e => change(e, 'day')} />&nbsp;
+  <LzNumber value={value.hour} on:change={e => change(e, 'hour')} />:
+  <LzNumber value={value.minute} on:change={e => change(e, 'minute')} />:
+  <LzNumber value={value.second} on:change={e => change(e, 'second')} />
 </div>
