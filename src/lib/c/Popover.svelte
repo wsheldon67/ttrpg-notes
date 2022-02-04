@@ -21,6 +21,7 @@
   .tip {
     padding: .5em;
     background-color: var(--b4);
+    height: initial;
   }
   .arrow {
     background-color: var(--b4);

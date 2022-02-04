@@ -2,7 +2,7 @@
   import feather from 'feather-icons'
 
   export let name
-  export let color
+  export let color = undefined
   let options = color ? {color} : {}
 </script>
 

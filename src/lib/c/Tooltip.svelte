@@ -6,6 +6,7 @@
   export let show = false
   export let placement = 'top'
   export let tip = 'Please provide a tip for this tooltip.'
+  export let block = false
 
   function show_tip() {
     show = true
@@ -29,8 +30,20 @@
     background-color: var(--b4);
     max-width: 16em;
     width: max-content;
+    height: min-content;
   }
 </style>
+{#if block}
+<div
+  use:usePopperElement
+  on:mouseenter={show_tip}
+  on:focus={show_tip}
+  on:mouseleave={hide_tip}
+  on:blur={hide_tip}
+  >
+  <slot />
+</div>
+{:else}
 <span
   use:usePopperElement
   on:mouseenter={show_tip}
@@ -40,6 +53,8 @@
   >
   <slot />
 </span>
+{/if}
+
 {#if show}
   <div class='tip' use:usePopperTooltip={{
     placement,

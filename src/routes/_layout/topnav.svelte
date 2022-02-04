@@ -10,18 +10,23 @@
     display: grid;
     grid-template-columns: min-content auto min-content;
     width: 100%;
-    gap: .25em;
     position: absolute;
     top: 0;
+    background-color: var(--b4);
   }
   .siteNav {
+    display: flex;
+    flex-direction: column;
     position: absolute;
     top: 2em;
+    width: 100vw;
+    max-width: var(--break1);
+    background-color: var(--b3);
   }
 </style>
 
 <div class='nav'>
-  <button on:click={toggle}>
+  <button on:click={toggle} class='vertCenter'>
     <Icon name='menu' />
   </button>
   <input type='search' placeholder='search' />

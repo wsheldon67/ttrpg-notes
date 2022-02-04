@@ -1,6 +1,5 @@
 /* Write your global styles here, in SCSS syntax. Variables and mixins from the src/variables.scss file are available here without importing */
 /* Colors */
-
 :root {
   --t: #EEE;
   --at: black;
@@ -23,10 +22,15 @@
   }
 }
 
+/* Variables */
+:root {
+  --break1: 36em;
+}
+
 /* Defaults */
 * {
   color: var(--t);
-  background-color: var(--b1);
+  background-color: inherit;
   font-family: 'Source Sans Pro', sans-serif;
   font-size: large;
 }
@@ -38,11 +42,23 @@ body {
   overflow: auto;
 }
 
+button {
+  border: none;
+}
 button:hover {
   filter: saturate(1.5) brightness(.8)
 }
 
 /* Utilities */
+
+.vertCenter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.descHeight100 * {
+  height: 100%;
+}
 
 .arrow,
 .arrow::before {

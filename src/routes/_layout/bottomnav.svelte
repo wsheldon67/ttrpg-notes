@@ -28,6 +28,7 @@
     flex-direction: row;
     justify-content: start;
     gap: .5em;
+    background-color: var(--b3);
   }
 </style>
 

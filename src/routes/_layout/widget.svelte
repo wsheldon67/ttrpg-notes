@@ -16,9 +16,9 @@
 </script>
 
 
-<div>
+<div class='descHeight100'>
   <Popover on:click={click} {show}>
-    <Tooltip slot='button' placement='right' {tip}>
+    <Tooltip slot='button' placement='right' {tip} block>
       <Icon name={icon} />
     </Tooltip>
     <svelte:fragment slot='content'>
