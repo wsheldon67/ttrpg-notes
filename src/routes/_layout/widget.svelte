@@ -7,10 +7,11 @@
 
   export let id
   export let tip
+  export let icon
   export let show = false
 
-  function click() {
-    dispatch('click',{id, show:!show})
+  function click(e) {
+    dispatch('click',{id, show: e.detail})
   }
 </script>
 
@@ -18,7 +19,7 @@
 <div>
   <Popover on:click={click} {show}>
     <Tooltip slot='button' placement='right' {tip}>
-      <Icon name='clock' />
+      <Icon name={icon} />
     </Tooltip>
     <svelte:fragment slot='content'>
       <slot />
