@@ -2,7 +2,8 @@
   import feather from 'feather-icons'
 
   export let name
-  export let color = 'white'
+  export let color
+  let options = color ? {color} : {}
 </script>
 
-{@html feather.icons[name].toSvg({color})}
+{@html feather.icons[name].toSvg(options)}

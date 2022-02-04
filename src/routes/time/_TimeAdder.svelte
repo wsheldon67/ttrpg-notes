@@ -20,11 +20,16 @@
     min-width: 12em;
     max-width: 36em;
   }
+  .minus, .plus {
+    color: var(--at);
+    font-weight: bold;
+  }
   .minus {
-    background-color: red;
+    background-color: var(--bad);
   }
   .plus {
-    background-color: green;
+    color: var(--at);
+    background-color: var(--good);
   }
   .label {
     text-align: center;

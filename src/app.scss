@@ -3,12 +3,23 @@
 
 :root {
   --t: #EEE;
-  --b1: #111;
+  --at: black;
+
+  --b0: #121212;
+  --b1: #1B1B1B;
+  --b2: #242424;
+  --b3: #2D2D2D;
+  --b4: #363636;
+
+  --p: #bbdefb;
+
+  --bad: #ef9a9a;
+  --good: #a5d6a7;
 }
 @media (prefers-color-scheme: light) {
   :root {
     --t: black;
-    --b1: white;
+    --b0: white;
   }
 }
 
@@ -17,9 +28,11 @@
   color: var(--t);
   background-color: var(--b1);
   font-family: 'Source Sans Pro', sans-serif;
+  font-size: large;
 }
-
+html {background-color: var(--b0);}
 body {
+  background-color: var(--b0);
   padding: 2em 0em;
   margin: 0em;
   overflow: auto;
