@@ -38,4 +38,36 @@ body {
   overflow: auto;
 }
 
+button:hover {
+  filter: saturate(1.5) brightness(.8)
+}
+
 /* Utilities */
+
+.arrow,
+.arrow::before {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: inherit;
+}
+.arrow {
+  visibility: hidden;
+}
+.arrow::before {
+  visibility: visible;
+  content: '';
+  transform: rotate(45deg);
+}
+.tip[data-popper-placement^='top'] > .arrow {
+  bottom: -4px;
+}
+.tip[data-popper-placement^='bottom'] > .arrow {
+  top: -4px;
+}
+.tip[data-popper-placement^='left'] > .arrow {
+  right: -4px;
+}
+.tip[data-popper-placement^='right'] > .arrow {
+  left: -4px;
+}

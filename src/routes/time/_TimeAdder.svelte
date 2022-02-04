@@ -14,7 +14,7 @@
 </script>
 
 <style>
-  .row {
+  .cont {
     display: grid;
     grid-template-columns: 1.5em auto 1.5em;
     min-width: 12em;
@@ -33,10 +33,11 @@
   }
   .label {
     text-align: center;
+    background-color: inherit;
   }
 </style>
 
-<div class='row'>
+<div class='cont'>
   <button class='minus' color='danger' on:click={minus}>-</button>
   <div class='label'>
     {txt}

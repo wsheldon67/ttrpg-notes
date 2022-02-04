@@ -26,6 +26,9 @@
 <style>
   .tip {
     padding: .25em;
+    background-color: var(--b4);
+    max-width: 16em;
+    width: max-content;
   }
 </style>
 <span

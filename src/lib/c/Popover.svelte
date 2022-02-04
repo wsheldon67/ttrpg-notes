@@ -8,6 +8,10 @@
   export let show = false
   export let placement = 'top'
 
+  const offset = {
+    top: [0, 8]
+  }
+
   function toggle() {
     show = !show
     dispatch('click', show)
@@ -15,7 +19,14 @@
 </script>
 <style>
   .tip {
-    padding: .25em;
+    padding: .5em;
+    background-color: var(--b4);
+  }
+  .arrow {
+    background-color: var(--b4);
+  }
+  :global(.tip .cont) {
+    background-color: var(--b4);
   }
 </style>
 <button use:usePopperElement on:click={toggle}>
@@ -23,6 +34,18 @@
 </button>
 {#if show}
   <div class='tip' use:usePopperTooltip={{
-    placement
-  }}><slot name="content"/></div>
+    placement,
+    modifiers: [
+      {
+        name: 'offset',
+        options: {
+          offset: offset[placement]
+        }
+      }
+    ]
+  }}>
+    <slot name="content"/>
+    <div class='arrow' data-popper-arrow></div>
+  </div>
+  
 {/if}
