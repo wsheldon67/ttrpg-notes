@@ -13,13 +13,12 @@
 
   function change(e, unit) {
     value[unit] = e.detail
-    console.log(value)
   }
   
 </script>
 
 <style>
-  input {
+  .cont :global(input) {
     border: none;
     padding-right: 0;
     padding-left: 0;
@@ -30,13 +29,15 @@
     align-content: center;
     height: 1.5em;
     line-height: 1.5em;
-    border: 2px ridge var(--b4)
+    border: 2px ridge var(--b4);
+    width: min-content;
+    padding: 0em .25em;
   }
 </style>
 
 <div class='cont'>
   <Icon name='clock' />&nbsp;
-  <LzNumber value={value.year} on:change={e => change(e, 'year')}/>/
+  <LzNumber value={value.year} on:change={e => change(e, 'year')} digits={4}/>/
   <LzNumber value={value.month} on:change={(e) => change(e, 'month')} />/
   <LzNumber value={value.day} on:change={e => change(e, 'day')} />&nbsp;
   <LzNumber value={value.hour} on:change={e => change(e, 'hour')} />:

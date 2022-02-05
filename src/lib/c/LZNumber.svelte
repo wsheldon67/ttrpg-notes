@@ -15,10 +15,11 @@
   function keypress(e) {
     if (e.key === 'ArrowUp') {
       value++
+      dispatch('change',value)
     } else if (e.key === 'ArrowDown') {
       value--
+      dispatch('change',value)
     }
-    dispatch('change',value)
   }
 </script>
 <style>
