@@ -2,6 +2,7 @@
   import Icon from "$lib/c/Icon.svelte";
   import LzNumber from "$lib/c/LZNumber.svelte";
   import { find } from '$lib/_db'
+  import { onMount } from 'svelte'
 
   export let value = {
     year: 0,
@@ -11,6 +12,11 @@
     minute: 0,
     second: 0
   }
+  onMount(async ()=> {
+    const res = await find('/time/get-global')
+    const ob = JSON.parse(res)
+    value = ob[0].time
+  })
 
   async function change(e, unit) {
     value[unit] = e.detail
