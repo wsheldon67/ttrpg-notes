@@ -4,7 +4,6 @@
 
   let isOpen = false
   function toggle() {isOpen = !isOpen}
-  // TODO close topnav on link click
   // TODO search
 </script>
 <style>
@@ -35,7 +34,7 @@
   <div>Logo</div>
 </div>
 {#if isOpen}
-<div class='siteNav'>
+<div class='siteNav' on:click={()=>isOpen = false}>
   <SiteNav />
 </div>
 {/if}
