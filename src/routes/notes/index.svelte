@@ -1,6 +1,6 @@
 <script>
   import { find } from '$lib/_db'
-  let promise = find('notes/all')
+  let promise = find('/notes/all')
 </script>
 
 {#await promise}

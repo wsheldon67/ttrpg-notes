@@ -1,6 +1,7 @@
 <script>
   import Icon from "$lib/c/Icon.svelte";
   import LzNumber from "$lib/c/LZNumber.svelte";
+  import { find } from '$lib/_db'
 
   export let value = {
     year: 0,
@@ -11,8 +12,10 @@
     second: 0
   }
 
-  function change(e, unit) {
+  async function change(e, unit) {
     value[unit] = e.detail
+    const res = await find('/time/set-global', value)
+    console.log(res)
   }
   // TODO attach to db
   
