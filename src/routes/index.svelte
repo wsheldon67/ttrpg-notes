@@ -6,6 +6,10 @@
   function buttonthing() {
     show = !show
   }
+  // TODO authentication
+  // login page, logged in users get their own stuff
+  // logged out users get some stuff?
+  // TODO map
 </script>
 
 <Popover {show}>

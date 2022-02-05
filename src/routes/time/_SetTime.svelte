@@ -23,7 +23,6 @@
     const res = await find('/time/set-global', value)
     console.log(res)
   }
-  // TODO attach to db
   
 </script>
 

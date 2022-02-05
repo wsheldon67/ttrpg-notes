@@ -11,3 +11,4 @@ export async function updateOne(collection, filter, update, options) {
   const col = db.collection(collection)
   return await col.updateOne(filter, update, options)
 }
+// TODO make database operations more dev friendly
