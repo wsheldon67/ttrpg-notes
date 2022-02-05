@@ -4,6 +4,7 @@
 
   let isOpen = false
   function toggle() {isOpen = !isOpen}
+  // TODO close topnav on link click
 </script>
 <style>
   .nav {
