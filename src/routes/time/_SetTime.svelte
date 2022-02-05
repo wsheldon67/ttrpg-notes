@@ -14,6 +14,7 @@
   function change(e, unit) {
     value[unit] = e.detail
   }
+  // TODO attach to db
   
 </script>
 

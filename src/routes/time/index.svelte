@@ -11,6 +11,7 @@
     second: 6
   }
 </script>
-
-<SetTime value={testDate}/>
+<div class='center'>
+  <SetTime value={testDate}/>
+</div>
 <FullTime />
