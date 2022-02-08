@@ -1,14 +1,20 @@
 <script>
-  let campaigns = [
-    {name: 'Fake Campaign'},
-    {name: 'Totally Real Campaign'}
-  ]
-  // TODO get campaigns for curr user
-  // TODO allow creation of new campaign, user is owner
+  import { post } from '$lib/db/client'
+
+  let promise = post('/campaign/all')
+
+  function setCampaign(e) {
+    post('/campaign/set',e.target.value)
+  }
 </script>
-<select>
-  {#each campaigns as campaign (campaign.name)}
-  <option>{campaign.name}</option>
+{#await promise}
+<p>Loading...</p>
+{:then campaigns}
+  <select on:change={setCampaign}>
+  {#each campaigns as campaign}
+    <option>{campaign.name}</option>
   {/each}
-</select>
-<button>New Campaign</button>
+  </select>
+{:catch err}
+<p>{err.message}</p>
+{/await}

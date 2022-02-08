@@ -6,7 +6,7 @@ export async function post ({ request }) {
     name: data
   }
   const res = await find('user', query)
-  console.log(res.body)
+  verbose(`${res.body[0].name} logging in.`)
   return {
     ...res,
     headers: {
