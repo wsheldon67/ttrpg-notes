@@ -1,2 +1,2 @@
-const verbose_logging = true
-global.verbose = (thing) => {if(verbose_logging){console.log(thing)}}
+const lgv = true
+global.verbose = (thing) => {if(lgv){console.log(thing)}}

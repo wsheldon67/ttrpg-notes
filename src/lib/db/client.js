@@ -6,6 +6,9 @@ export async function post(url, data={}) {
     body: JSON.stringify(data)
   })
   const txt = await res.json()
-  if (res.ok) {return txt}
+  if (res.ok) {
+    console.debug(url,txt)
+    return txt
+  }
   else {throw new Error(txt)}
 }

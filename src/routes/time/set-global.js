@@ -1,4 +1,4 @@
-import { updateOne } from "$lib/db";
+import { updateOne } from "$lib/db/server";
 
 export async function post({request}) {
   const time = await request.json()

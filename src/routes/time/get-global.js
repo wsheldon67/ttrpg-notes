@@ -1,13 +1,11 @@
-import { find } from "$lib/db";
+import { cookie, find } from "$lib/db/server";
 
-export async function post ({req}) {
+export async function post ({request}) {
+  const {user, campaign} = cookie(request)
   const query = {
-    user: 'Bob',
+    user, campaign,
     type: 'time'
   }
-  const time = await find('generic', query)
-  return {
-    body: time,
-    status: 200
-  }
+  verbose(`${user} requested game time for ${campaign}`)
+  return find('generic', query)
 }
