@@ -1,6 +1,6 @@
 <script>
   import { goto } from "$app/navigation";
-  import { find } from "$lib/_db";
+  import { find } from "$lib/db/client";
 
   let username
 

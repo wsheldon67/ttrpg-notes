@@ -10,7 +10,8 @@
   }
 </style>
 
-<a href='./time'>Time</a>
-<a href='./notes'>Notes</a>
+<a href='/auth/login'>Login</a>
+<a href='/time'>Time</a>
+<a href='/notes'>Notes</a>
 
-<a href='./settings'>Settings</a>
+<a href='/settings'>Settings</a>

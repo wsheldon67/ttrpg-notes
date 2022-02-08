@@ -1,7 +1,7 @@
 <script>
   import Icon from "$lib/c/Icon.svelte";
   import LzNumber from "$lib/c/LZNumber.svelte";
-  import { find } from '$lib/_db'
+  import { find } from '$lib/db/client'
   import { onMount } from 'svelte'
 
   export let value = {

@@ -1,5 +1,5 @@
 
-export async function find(url, data={}) {
+export async function post(url, data={}) {
   const res = await fetch(url,{
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
