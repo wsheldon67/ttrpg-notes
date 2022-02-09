@@ -1,10 +1,13 @@
-import clientPromise from "$lib/db/db-connect"
+import { cookie } from "./cookie";
+import clientPromise from "./db-connect"
 const connection = await clientPromise;
 const db = connection.db('ttrpg')
 
+export {cookie} from './cookie'
+
 export async function find(collection, query, projection) {
-  const col = db.collection(collection)
-  const res = await col.find(query, projection).toArray()
+  const coll = db.collection(collection)
+  const res = await coll.find(query, projection).toArray()
   return {
     body: res,
     status: 200,
@@ -12,26 +15,43 @@ export async function find(collection, query, projection) {
 }
 
 export async function updateOne(collection, filter, update, options) {
-  const col = db.collection(collection)
-  return await col.updateOne(filter, update, options)
+  const coll = db.collection(collection)
+  return await coll.updateOne(filter, update, options)
 }
 
-export function cookie(request) {
-  return parse(request.headers.get('cookie'))
-}
-function parse(cookieString) {
-  let result = {};
-  let cookies = cookieString ? cookieString.split('; ') : [];
-
-  for (let cookie of cookies) {
-      let parts = cookie.split('=');
-      let value = parts.slice(1).join('=');
-      let name = readValue(parts[0]).replace(/%3D/g, '=');
-      result[name] = readValue(value);
+export async function replaceOne(collection, filter, replacement, options) {
+  const coll = db.collection(collection)
+  const res = await coll.replaceOne(filter, replacement, options)
+  return {
+    body: res,
+    status: 200
   }
-
-  return result;
 }
-function readValue(value) {
-  return value.replace(/%3B/g, ';');
+
+export function col(collection, {request}) {
+  const coll = db.collection(collection)
+  const {user, campaign} = cookie(request)
+
+  async function find(func) {
+    const data = await request.json()
+    const {query, projection} = func({user, campaign, data})
+    verbose(`Executing find with`,query, projection)
+    const body = await coll.find(query, projection).toArray()
+    verbose(`Responding with`, body)
+    return {
+      body,
+      status: 200
+    }
+  }
+  async function findOne(func) {
+    const data = await request.json()
+    const {query, projection} = func({user, campaign, data})
+    verbose('Executing findOne with', query, projection)
+    const body = await coll.findOne(query,projection)
+    verbose('Responding with', body)
+    return {
+      body, status: 200
+    }
+  }
+  return {find, findOne}
 }
