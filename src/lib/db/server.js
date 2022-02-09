@@ -6,7 +6,7 @@ const db = connection.db('ttrpg')
 export {cookie} from './cookie'
 
 export async function find(collection, query, projection) {
-  console.warn(`Depreciated - switch to col()`)
+  console.trace(`Depreciated - switch to col()`)
   const coll = db.collection(collection)
   const res = await coll.find(query, projection).toArray()
   return {
@@ -16,13 +16,13 @@ export async function find(collection, query, projection) {
 }
 
 export async function updateOne(collection, filter, update, options) {
-  console.warn(`Depreciated - switch to col()`)
+  console.trace(`Depreciated - switch to col()`)
   const coll = db.collection(collection)
   return await coll.updateOne(filter, update, options)
 }
 
 export async function replaceOne(collection, filter, replacement, options) {
-  console.warn(`Depreciated - switch to col()`)
+  console.trace(`Depreciated - switch to col()`)
   const coll = db.collection(collection)
   const res = await coll.replaceOne(filter, replacement, options)
   return {
