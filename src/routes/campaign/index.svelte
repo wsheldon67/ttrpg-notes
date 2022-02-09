@@ -1,11 +1,14 @@
 <script>
   import { post } from '$lib/db/client'
+  import {campaign as store} from '$lib/stores/campaign'
 
   let promise = post('/campaign/all')
 
-  function setCampaign(e) {
-    post('/campaign/set',e.target.value)
+  async function setCampaign(e) {
+    const cmpdata = await post('/campaign/set',e.target.value)
+    store.set(cmpdata, true)
   }
+  // TODO select should start on current campaign
 </script>
 {#await promise}
 <p>Loading...</p>

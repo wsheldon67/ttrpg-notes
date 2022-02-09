@@ -1,4 +1,4 @@
-import { game_time } from '$lib/time'
+import { game_time } from '$lib/stores/time'
 import { post } from '$lib/db/client'
 
 export async function onload() {

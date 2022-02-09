@@ -1,13 +1,13 @@
 <script>
   import { goto } from "$app/navigation";
-  import { find } from "$lib/db/client";
+  import { post } from "$lib/db/client";
 
   let username
 
   function submit(){
     // TODO make more robust for unallowed usernames, implement server side as well
     if (username === ''){return}
-    find('/auth/register',username)
+    post('/auth/register',username)
     .then((res) => {
       goto('/')
     })

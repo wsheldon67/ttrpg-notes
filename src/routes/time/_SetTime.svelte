@@ -1,5 +1,5 @@
 <script>
-  import { game_time } from "$lib/time";
+  import { game_time } from "$lib/stores/time";
   import Icon from "$lib/c/Icon.svelte";
   import LzNumber from "$lib/c/LZNumber.svelte";
 
