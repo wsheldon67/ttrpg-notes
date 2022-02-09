@@ -56,5 +56,13 @@ export function col(collection, {request}) {
       body, status: 200
     }
   }
-  return {find, findOne}
+  async function updateOne(func) {
+    const data = await request.json()
+    const {filter, update, options} = func({user, campaign, data})
+    verbose(`Executing updateOne with`, filter, update, options)
+    const body = await coll.updateOne(filter, update, options)
+    verbose(`Responding with`, body)
+    return {body, status: 200}
+  }
+  return {find, findOne, updateOne}
 }

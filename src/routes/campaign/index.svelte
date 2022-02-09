@@ -15,7 +15,7 @@
 {:then campaigns}
   <select on:change={setCampaign}>
   {#each campaigns as campaign}
-    <option>{campaign.name}</option>
+    <option>{campaign.campaign}</option>
   {/each}
   </select>
 {:catch err}

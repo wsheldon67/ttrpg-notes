@@ -5,8 +5,8 @@ function create_store() {
   const { subscribe, set, update} = writable({})
   return {
     subscribe,
-    set: (campaign_object, initial) => {
-      if(!initial){post('/campaign/new', campaign_object)}
+    set: (campaign_object, dontSave) => {
+      if(!dontSave){post('/campaign/new', campaign_object)}
       set(campaign_object)
     },
     update: (key, value) => {

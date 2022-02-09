@@ -1,33 +1,38 @@
-import { writable } from "svelte/store";
 import { post } from '$lib/db/client'
+import { writable } from 'svelte/store'
 
-function create_time() {
-  const { subscribe, set, update } = writable({
-    year: 0,
-    month: 0,
-    day: 0,
-    hour: 0,
-    minute: 0,
-    second: 0
+function create_store() {
+  const {subscribe, set, update} = writable({
+    year: 0, month: 0, day: 0, hour: 0, minute: 0, second: 0
   })
   return {
     subscribe,
-    set: (time, clientOnly) => {
-      const clean_time = clean(time)
-      if (!clientOnly){
-        post('/time/set-global', clean_time)
-      }
-      set(clean_time)
+    set: (time_ob, dontSave) => {
+      const res = settle(time_ob)
+      set(res)
+      if (!dontSave) {post('/time/set', res)}
     },
-    update: (func) => {
-      // TODO implement time updater
-      update(func)
+    set_unit: (amt, unit) => {
+      update((old) => {
+        const res = settle({...old, [unit]: amt})
+        post('/time/set', res)
+        return res
+      })
+    },
+    add: (amt, unit) => {
+      update((old) => {
+        const res = {...old}
+        res[unit] += amt
+        const settled = settle(res)
+        post('/time/set', res)
+        return res
+      })
     }
   }
 }
-export const game_time = create_time()
 
-function clean(time) {
-  // TODO handle overflows, per this campaign's time system
-  return time
+export const time = create_store()
+
+function settle(ob) {
+  return ob
 }
