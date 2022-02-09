@@ -7,10 +7,10 @@
     {txt: '10 Minutes', val: 600},
     {txt: '1 Hour', val: 3600}
   ]
+  // TODO next morning
 </script>
 
 
-  {#each opts as opt}
-  <TimeAdder {...opt} />
-  {/each}
-  <TimeAdder txt='Next Morning' val={0}/>
+{#each opts as opt}
+<TimeAdder {...opt} />
+{/each}

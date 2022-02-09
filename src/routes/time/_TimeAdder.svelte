@@ -1,15 +1,14 @@
 <script>
-  import { createEventDispatcher } from 'svelte'
-  const dispatch = createEventDispatcher()
+  import { time } from '$lib/stores/time'
 
   export let val
   export let txt
 
   function plus() {
-    dispatch('change',val)
+    time.add(val, 'second')
   }
   function minus() {
-    dispatch('change',-val)
+    time.add(-val, 'second')
   }
 </script>
 
@@ -29,7 +28,6 @@
     background-color: var(--bad);
   }
   .plus {
-    color: var(--at);
     background-color: var(--good);
   }
   .label {
