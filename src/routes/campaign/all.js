@@ -1,6 +1,7 @@
-import { cookie, find } from "$lib/db/server";
+import { col } from "$lib/db/server";
 
-export async function post({ request }) {
-  const user = cookie(request).user
-  return find('campaign',{user})
+export async function post(r) {
+  return col('campaign',r).find(({user}) => {
+    return {query: {user}}
+  })
 }
