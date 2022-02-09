@@ -10,7 +10,7 @@
 
   function change(e) {
     value = Number(e.target.value)
-    dispatch('change', value)
+    dispatch('change', Number(e.target.value))
   }
   function keypress(e) {
     if (e.key === 'ArrowUp') {

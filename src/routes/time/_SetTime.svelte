@@ -1,10 +1,10 @@
 <script>
-  import * as time from "$lib/time";
+  import {time} from "$lib/stores/time";
   import Icon from "$lib/c/Icon.svelte";
   import LzNumber from "$lib/c/LZNumber.svelte";
 
   function change(e, unit) {
-    time.set(e.detail, unit)
+    time.set_unit(e.detail, unit)
   }
   
 </script>
@@ -29,10 +29,10 @@
 
 <div class='cont'>
   <Icon name='clock' />&nbsp;
-  <LzNumber value={$current.year} on:change={e => change(e, 'year')} digits={4}/>/
-  <LzNumber value={$current.month} on:change={(e) => change(e, 'month')} />/
-  <LzNumber value={$current.day} on:change={e => change(e, 'day')} />&nbsp;
-  <LzNumber value={$current.hour} on:change={e => change(e, 'hour')} />:
-  <LzNumber value={$current.minute} on:change={e => change(e, 'minute')} />:
-  <LzNumber value={$current.second} on:change={e => change(e, 'second')} />
+  <LzNumber value={$time.year} on:change={e => change(e, 'year')} digits={4}/>/
+  <LzNumber value={$time.month} on:change={(e) => change(e, 'month')} />/
+  <LzNumber value={$time.day} on:change={e => change(e, 'day')} />&nbsp;
+  <LzNumber value={$time.hour} on:change={e => change(e, 'hour')} />:
+  <LzNumber value={$time.minute} on:change={e => change(e, 'minute')} />:
+  <LzNumber value={$time.second} on:change={e => change(e, 'second')} />
 </div>
