@@ -50,8 +50,6 @@ function create_store() {
 export const time = create_store()
 
 
-// TODO time stored as 0-based, mil. need to display w/ user pref on those items
-
 export const display_time = derived(
   time,
   display
