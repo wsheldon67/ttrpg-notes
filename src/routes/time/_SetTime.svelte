@@ -10,7 +10,7 @@
 </script>
 
 <style>
-  .cont :global(input) {
+  .cont :global(input), .cont :global(select) {
     border: none;
     padding-right: 0;
     padding-left: 0;
@@ -26,7 +26,9 @@
     padding: 0em .25em;
   }
 </style>
-
+{#if $display_time.weekday}
+<div>{$display_time.weekday}</div>
+{/if}
 <div class='cont'>
   <Icon name='clock' />&nbsp;
   <LzNumber value={$display_time.year} on:change={e => change(e, 'year')} digits={4}/>/
@@ -35,4 +37,10 @@
   <LzNumber value={$display_time.hour} on:change={e => change(e, 'hour')} />:
   <LzNumber value={$display_time.minute} on:change={e => change(e, 'minute')} />:
   <LzNumber value={$display_time.second} on:change={e => change(e, 'second')} />
+  {#if $display_time.suffix}
+    <select value={$display_time.suffix}>
+      <option>AM</option>
+      <option>PM</option>
+    </select>
+  {/if}
 </div>
