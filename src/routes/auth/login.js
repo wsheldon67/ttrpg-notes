@@ -1,11 +1,11 @@
-import { find } from "$lib/db/server";
+import { col } from "$lib/db/server";
 
-export async function post ({ request }) {
-  const data = await request.json()
-  const query = {
-    name: data
-  }
-  const res = await find('user', query)
+export async function post (r) {
+  const res = await col('user', r, true, true).findOne(({data}) => {
+    return {
+      query: data
+    }
+  })
   verbose(`${res.body[0].name} logging in.`)
   return {
     ...res,

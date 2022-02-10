@@ -5,7 +5,6 @@
   import BottomNav from './_layout/bottomnav.svelte'
 
   let promise = onload()
-  // TODO what happens if a campaign is not set? needs to go to user/campaign selector
 </script>
 
 {#await promise}

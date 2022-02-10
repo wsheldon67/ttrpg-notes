@@ -31,38 +31,54 @@ export async function replaceOne(collection, filter, replacement, options) {
   }
 }
 
-export function col(collection, {request}) {
+export function col(collection, {request}, ignore_missing_user, ignore_missing_campaign) {
   const coll = db.collection(collection)
   const {user, campaign} = cookie(request)
+
+  function response(body) {
+    if (!user && !ignore_missing_user) {
+      const res = {
+        status: 300,
+        headers: {'location': '/auth/login'}
+      }
+      verbose('Responding with', res)
+      return res
+    } else if (!campaign && !ignore_missing_campaign) {
+      const res = {
+        status: 300,
+        headers: {'location': '/campaign'}
+      }
+      verbose('Responding with', res)
+      return res
+    } else {
+      verbose('Responding with', body)
+      return {
+        status: 200,
+        body
+      }
+    }
+  }
 
   async function find(func) {
     const data = await request.json()
     const {query, projection} = func({user, campaign, data})
     verbose(`Executing find with`,query, projection)
     const body = await coll.find(query).project(projection||{}).toArray()
-    verbose(`Responding with`, body)
-    return {
-      body,
-      status: 200
-    }
+    return response(body)
   }
   async function findOne(func) {
     const data = await request.json()
     const {query, projection} = func({user, campaign, data})
     verbose('Executing findOne with', query, projection)
     const body = await coll.findOne(query,projection)
-    verbose('Responding with', body)
-    return {
-      body, status: 200
-    }
+    return response(body)
   }
   async function updateOne(func) {
     const data = await request.json()
     const {filter, update, options} = func({user, campaign, data})
     verbose(`Executing updateOne with`, filter, update, options)
     const body = await coll.updateOne(filter, update, options)
-    verbose(`Responding with`, body)
-    return {body, status: 200}
+    return response(body)
   }
   return {find, findOne, updateOne}
 }
