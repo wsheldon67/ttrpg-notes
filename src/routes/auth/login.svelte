@@ -1,10 +1,11 @@
 <script>
+import { goto } from '$app/navigation';
+
   import { post } from '$lib/db/client'
   let username
 
   function submit() {
     post('/auth/login', username)
-    .then((res) => {console.log(res)})
   }
   // TODO login
   // TODO create campaign

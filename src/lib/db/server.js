@@ -35,50 +35,44 @@ export function col(collection, {request}, ignore_missing_user, ignore_missing_c
   const coll = db.collection(collection)
   const {user, campaign} = cookie(request)
 
-  function response(body) {
-    if (!user && !ignore_missing_user) {
-      const res = {
-        status: 300,
-        headers: {'location': '/auth/login'}
-      }
-      verbose('Responding with', res)
-      return res
-    } else if (!campaign && !ignore_missing_campaign) {
-      const res = {
-        status: 300,
-        headers: {'location': '/campaign'}
-      }
-      verbose('Responding with', res)
-      return res
-    } else {
-      verbose('Responding with', body)
-      return {
-        status: 200,
-        body
-      }
+  function needed_info() {
+    if (!user && !ignore_missing_user){return false}
+    if (!campaign && ignore_missing_campaign){return false}
+    return true
+  }
+  function redirect() {
+    let location
+    if (!user && !ignore_missing_user) {location = '/auth/login'}
+    if (!campaign && ignore_missing_campaign) {location = '/campaign'}
+    return {
+      status: 300,
+      headers: {location}
     }
   }
 
   async function find(func) {
+    if (!needed_info()) {return redirect()}
     const data = await request.json()
     const {query, projection} = func({user, campaign, data})
     verbose(`Executing find with`,query, projection)
     const body = await coll.find(query).project(projection||{}).toArray()
-    return response(body)
+    return {status: 200, body}
   }
   async function findOne(func) {
+    if (!needed_info()) {return redirect()}
     const data = await request.json()
     const {query, projection} = func({user, campaign, data})
     verbose('Executing findOne with', query, projection)
-    const body = await coll.findOne(query,projection)
-    return response(body)
+    const body = await coll.findOne(query)
+    return {status: 200, body}
   }
   async function updateOne(func) {
+    if (!needed_info()) {return redirect()}
     const data = await request.json()
     const {filter, update, options} = func({user, campaign, data})
     verbose(`Executing updateOne with`, filter, update, options)
     const body = await coll.updateOne(filter, update, options)
-    return response(body)
+    return {status: 200, body}
   }
   return {find, findOne, updateOne}
 }
