@@ -39,7 +39,7 @@ export function col(collection, {request}) {
     const data = await request.json()
     const {query, projection} = func({user, campaign, data})
     verbose(`Executing find with`,query, projection)
-    const body = await coll.find(query, projection).toArray()
+    const body = await coll.find(query).project(projection||{}).toArray()
     verbose(`Responding with`, body)
     return {
       body,
