@@ -10,8 +10,8 @@ function create_store() {
   })
   return {
     subscribe,
-    set: (time_ob, dontSave) => {
-      const res = settle(time_ob)
+    set: (time_ob, dontSave, as_is) => {
+      const res = settle(time_ob, as_is)
       set(res)
       if (!dontSave) {post('/time/set', res)}
     },

@@ -12,7 +12,7 @@ export async function onload() {
     const campaign_data = await post('/campaign/by-name')
     campaign.set(campaign_data, true)
     settings.set(campaign_data.settings, true)
-    time.set(campaign_data.time, true)
+    time.set(campaign_data.time, true, true)
   } catch (err) {
     console.debug('No campaign, redirecting',err)
     goto('/campaign')

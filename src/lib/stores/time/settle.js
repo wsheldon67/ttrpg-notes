@@ -40,6 +40,6 @@ export function settle(ob, as_is) {
     }
     sob[unit] = Number(set_value)
   }
-
+  console.log(sob)
   return sob
 }

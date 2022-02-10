@@ -19,7 +19,7 @@ export function display($time) {
 
   if (one_based) {
     dob.day++
-    dob.month++ 
+    dob.month++
   }
 
   if (weekdays) {
