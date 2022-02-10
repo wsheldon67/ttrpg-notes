@@ -26,9 +26,6 @@
     padding: 0em .25em;
   }
 </style>
-{#if $display_time.weekday}
-<div>{$display_time.weekday}</div>
-{/if}
 <div class='cont'>
   <Icon name='clock' />&nbsp;
   <LzNumber value={$display_time.year} on:change={e => change(e, 'year')} digits={4}/>/
