@@ -1,6 +1,6 @@
 <script>
   import Widget from './widget.svelte'
-  import FullTime from '../time/_FullTime.svelte'
+  import Time from '../time/Time.svelte'
 
   const open = {
     time: false,
@@ -34,7 +34,7 @@
 
 <nav>
   <Widget id='time' icon='clock' tip='Adjust game time' on:click={click} show={open.time}>
-    <FullTime />
+    <Time />
   </Widget>
   <Widget id='notes' icon='edit-3' tip='Make a note' on:click={click} show={open.notes}>
     //TODO quick note

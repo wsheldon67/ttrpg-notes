@@ -23,7 +23,7 @@
     line-height: 1.5em;
     border: 2px ridge var(--b4);
     width: min-content;
-    padding: 0em .25em;
+    padding: .125em .25em;
   }
 </style>
 <div class='cont'>

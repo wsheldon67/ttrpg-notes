@@ -1,17 +1,4 @@
 <script>
-  import FullTime from "./_FullTime.svelte";
-  import SetTime from './_SetTime.svelte'
-  import NextTime from './_NextTime.svelte'
-  import Weekday from './_Weekday.svelte'
-
-  // TODO be able to use game time more easily, globally
-  // Set, increment, get, display
+  import Time from './Time.svelte'
 </script>
-<div class='center'>
-  <Weekday />
-  <SetTime />
-</div>
-<FullTime />
-<div class='center'>
-  <NextTime amt={1} txt='Next Day'/>
-</div>
+<Time />
