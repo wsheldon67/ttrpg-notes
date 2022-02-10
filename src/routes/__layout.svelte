@@ -11,9 +11,9 @@
 {#await promise}
 Loading...
 {:then}
-<TopNav />
-<slot />
-<BottomNav />
+  <TopNav />
+  <slot />
+  <BottomNav />
 {:catch error}
 {error.message}
 {/await}
