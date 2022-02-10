@@ -1,7 +1,9 @@
 import { post } from '$lib/db/client'
-import { writable, derived } from 'svelte/store'
+import { writable, derived, get } from 'svelte/store'
+import { settings } from './settings'
 import { settle } from './time/settle'
 import { display } from './time/display'
+// FIXME one_based times send one_based instead of actual time to db/store
 
 function create_store() {
   const {subscribe, set, update} = writable({
@@ -25,6 +27,19 @@ function create_store() {
       update((old) => {
         const res = {...old}
         res[unit] += amt
+        const settled = settle(res)
+        post('/time/set', settled)
+        return settled
+      })
+    },
+    next_day: (amt) => {
+      update((old) => {
+        const res = {...old}
+        res.day += amt
+        const {hour, minute, second} = get(settings).time.next_day_time
+        res.hour = hour
+        res.minute = minute
+        res.second = second
         const settled = settle(res)
         post('/time/set', settled)
         return settled
