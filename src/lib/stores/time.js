@@ -3,7 +3,6 @@ import { writable, derived, get } from 'svelte/store'
 import { settings } from './settings'
 import { settle } from './time/settle'
 import { display } from './time/display'
-// FIXME one_based times send one_based instead of actual time to db/store
 
 function create_store() {
   const {subscribe, set, update} = writable({
@@ -27,7 +26,7 @@ function create_store() {
       update((old) => {
         const res = {...old}
         res[unit] += amt
-        const settled = settle(res)
+        const settled = settle(res, true)
         post('/time/set', settled)
         return settled
       })
@@ -40,7 +39,7 @@ function create_store() {
         res.hour = hour
         res.minute = minute
         res.second = second
-        const settled = settle(res)
+        const settled = settle(res, true)
         post('/time/set', settled)
         return settled
       })

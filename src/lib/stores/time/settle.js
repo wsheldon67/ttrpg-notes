@@ -2,11 +2,12 @@ import { settings } from '../settings'
 import { get } from 'svelte/store'
 
 
-export function settle(ob) {
+export function settle(ob, as_is) {
   const {
     months_in_year,
     days_in_month,
-    hours_in_day
+    hours_in_day,
+    one_based
   } = get(settings).time
 
   const units = {
@@ -18,12 +19,18 @@ export function settle(ob) {
     'year': Infinity
   }
 
-  const sob = {second: 0}
+  const sob = {...ob}
+
+  if (one_based && !as_is) {
+    sob.month--
+    sob.day--
+  }
+
   let carry_over = 0
 
   for (let unit in units) {
     const overflow = units[unit]
-    let set_value = ob[unit] + carry_over
+    let set_value = sob[unit] + carry_over
 
     if (set_value >= overflow || set_value < 0) {
       carry_over = Math.floor(set_value / overflow)
