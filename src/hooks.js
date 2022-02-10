@@ -1,4 +1,4 @@
-const lgv = true
+const lgv = false
 global.verbose = (...thing) => {if(lgv){console.log(...thing)}}
 
 // TODO redirect to /campaign if there is not a campaign chosen
