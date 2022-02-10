@@ -1,7 +1,7 @@
 import { post } from '$lib/db/client'
-import { writable } from 'svelte/store'
+import { writable, derived } from 'svelte/store'
 import { settle } from './time/settle'
-export { display_time } from './time/display'
+import { display } from './time/display'
 
 function create_store() {
   const {subscribe, set, update} = writable({
@@ -34,3 +34,11 @@ function create_store() {
 }
 
 export const time = create_store()
+
+
+// TODO time stored as 0-based, mil. need to display w/ user pref on those items
+
+export const display_time = derived(
+  time,
+  display
+)
