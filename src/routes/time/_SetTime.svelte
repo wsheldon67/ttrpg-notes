@@ -1,5 +1,5 @@
 <script>
-  import {time} from "$lib/stores/time";
+  import {time, display_time} from "$lib/stores/time";
   import Icon from "$lib/c/Icon.svelte";
   import LzNumber from "$lib/c/LZNumber.svelte";
 
@@ -29,10 +29,10 @@
 
 <div class='cont'>
   <Icon name='clock' />&nbsp;
-  <LzNumber value={$time.year} on:change={e => change(e, 'year')} digits={4}/>/
-  <LzNumber value={$time.month} on:change={(e) => change(e, 'month')} />/
-  <LzNumber value={$time.day} on:change={e => change(e, 'day')} />&nbsp;
-  <LzNumber value={$time.hour} on:change={e => change(e, 'hour')} />:
-  <LzNumber value={$time.minute} on:change={e => change(e, 'minute')} />:
-  <LzNumber value={$time.second} on:change={e => change(e, 'second')} />
+  <LzNumber value={$display_time.year} on:change={e => change(e, 'year')} digits={4}/>/
+  <LzNumber value={$display_time.month} on:change={(e) => change(e, 'month')} />/
+  <LzNumber value={$display_time.day} on:change={e => change(e, 'day')} />&nbsp;
+  <LzNumber value={$display_time.hour} on:change={e => change(e, 'hour')} />:
+  <LzNumber value={$display_time.minute} on:change={e => change(e, 'minute')} />:
+  <LzNumber value={$display_time.second} on:change={e => change(e, 'second')} />
 </div>
