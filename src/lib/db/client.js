@@ -1,7 +1,6 @@
 import { goto } from "$app/navigation"
 
 export async function post(url, data={}) {
-  console.log(url)
   try {
     const res = await fetch(url,{
       method: 'POST',
@@ -19,3 +18,17 @@ export async function post(url, data={}) {
     else {throw new Error(txt)}
   } catch(err){console.log(err)}
 }
+
+export async function get(url) {
+  const res = await fetch(url, {
+    method: 'GET',
+  })
+  try {
+    return await res.json()
+  } catch (err) {
+    console.log(err)
+    return {}
+  }
+}
+
+// return a promise

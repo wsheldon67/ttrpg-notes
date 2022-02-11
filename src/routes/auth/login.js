@@ -20,7 +20,7 @@ export async function post(r) {
     return {
       status: 300,
       headers: {
-        'location': `/campaign`
+        'location': `/auth/campaign`
       }
     }
   }

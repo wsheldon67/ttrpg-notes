@@ -43,20 +43,24 @@ export function col(collection, {request}, ignore_missing_user, ignore_missing_c
   function redirect() {
     let location
     if (!user && !ignore_missing_user) {location = '/auth/login'}
-    if (!campaign && ignore_missing_campaign) {location = '/campaign'}
+    if (!campaign && ignore_missing_campaign) {location = 'auth/campaign'}
     return {
-      status: 300,
+      status: 303,
       headers: {location}
     }
   }
 
   async function find(func) {
     if (!needed_info()) {return redirect()}
-    const data = await request.json()
-    const {query, projection} = func({user, campaign, data})
-    verbose(`Executing find with`,query, projection)
-    const body = await coll.find(query).project(projection||{}).toArray()
-    return {status: 200, body}
+    try {var data = await request.json()}
+    catch {var data = undefined}
+    finally {
+      const {query, projection} = func({user, campaign, data})
+      verbose(`Executing find with`,query, projection)
+      const body = await coll.find(query).project(projection||{}).toArray()
+      verbose('Responding with', body)
+      return {status: 200, body}
+    }
   }
   async function findOne(func) {
     if (!needed_info()) {return redirect()}
@@ -64,6 +68,7 @@ export function col(collection, {request}, ignore_missing_user, ignore_missing_c
     const {query, projection} = func({user, campaign, data})
     verbose('Executing findOne with', query, projection)
     const body = await coll.findOne(query)
+    verbose('Responding with', body)
     return {status: 200, body}
   }
   async function updateOne(func) {
@@ -82,5 +87,5 @@ export function col(collection, {request}, ignore_missing_user, ignore_missing_c
     const body = await coll.insertOne(document)
     return {status: 200, body}
   }
-  return {find, findOne, updateOne}
+  return {find, findOne, updateOne, insertOne}
 }

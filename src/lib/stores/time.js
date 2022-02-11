@@ -3,7 +3,6 @@ import { writable, derived, get } from 'svelte/store'
 import { settings } from './settings'
 import { settle } from './time/settle'
 import { display } from './time/display'
-import { campaign } from './campaign'
 
 function create_store() {
   const {subscribe, set, update} = writable({
@@ -44,8 +43,7 @@ function create_store() {
         post('/time/set', settled)
         return settled
       })
-    },
-    get: campaign.get
+    }
   }
 }
 
