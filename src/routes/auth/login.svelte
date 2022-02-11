@@ -6,7 +6,7 @@
 
   function submit() {
     post('/auth/login', username)
-    .then(() => {goto('/campaign')})
+    .then(() => {goto('./campaign')})
   }
   // TODO login
   // TODO create campaign

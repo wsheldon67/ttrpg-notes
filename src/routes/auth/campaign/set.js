@@ -1,8 +1,9 @@
-export async function post () {
+export async function post ({request}) {
+  const campaign = await request.json()
   return {
     status: 200,
     headers: {
-      'set-cookie': `campaign=${body.campaign}; Path=/`
+      'set-cookie': `campaign=${campaign}; Path=/`
     }
   }
 }

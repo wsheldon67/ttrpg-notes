@@ -1,14 +1,10 @@
 <script>
   import { goto } from "$app/navigation";
-
   import { get, post } from "$lib/db/client";
-  import { campaign as store} from '$lib/stores/campaign'
-  import { settings } from '$lib/stores/settings'
-  import { time } from '$lib/stores/time'
 
-  let promise = get('./all')
+  let promise = get('/auth/campaign/all')
   async function setCampaign(e){
-    await post('./set',e.target.value)
+    await post('/auth/campaign/set',e.target.value)
     goto('/app')
   }
 </script>
