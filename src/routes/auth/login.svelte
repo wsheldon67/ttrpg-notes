@@ -1,11 +1,12 @@
 <script>
-import { goto } from '$app/navigation';
-
+  import { goto } from '$app/navigation';
   import { post } from '$lib/db/client'
+
   let username
 
   function submit() {
     post('/auth/login', username)
+    .then(() => {goto('/campaign')})
   }
   // TODO login
   // TODO create campaign

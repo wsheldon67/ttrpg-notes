@@ -12,7 +12,7 @@ export async function post(r) {
     return {
       ...res,
       headers: {
-        'set-cookie': `user=${user}; Path=/`
+        'set-cookie': [`user=${user}; Path=/`,`campaign=''; Path=/`]
       }
     }
   } catch (err) {
