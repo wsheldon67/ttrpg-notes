@@ -3,14 +3,19 @@
   import {settings} from '$lib/stores/settings'
   import {time} from '$lib/stores/time'
   export async function load({fetch}) {
-    const data = await fetch('/auth/campaign/by-name',{
-      method: 'GET',
+    const res = await fetch('/auth/campaign/by-name',{
+      method: 'GET'
     })
-    const camp = await data.json()
-    campaign.set(camp, true)
-    time.set({...camp.time, settings: camp.settings.time},true)
-    settings.set(camp.settings, true)
-    return {status: 204}
+    if (res.ok){
+      try{var camp = await res.json()}
+      catch {return {props: {redirect: true}}}
+      campaign.set(camp, true)
+      time.set({...camp.time, settings: camp.settings.time},true)
+      settings.set(camp.settings, true)
+      return {status: 204}
+    } else {
+      return res
+    }
   }
 </script>
 
@@ -18,6 +23,11 @@
 	import '../../app.scss';
   import TopNav from './_layout/topnav.svelte'
   import BottomNav from './_layout/bottomnav.svelte'
+  import { goto } from '$app/navigation';
+
+  export let redirect = false
+
+  if (redirect) {goto('/auth/login')}
 </script>
 
 <TopNav />

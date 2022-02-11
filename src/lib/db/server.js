@@ -34,6 +34,7 @@ export async function replaceOne(collection, filter, replacement, options) {
 export function col(collection, {request}, ignore_missing_user, ignore_missing_campaign) {
   const coll = db.collection(collection)
   const {user, campaign} = cookie(request)
+  console.log(user, campaign)
 
   function needed_info() {
     if (!user && !ignore_missing_user){return false}
@@ -43,7 +44,7 @@ export function col(collection, {request}, ignore_missing_user, ignore_missing_c
   function redirect() {
     let location
     if (!user && !ignore_missing_user) {location = '/auth/login'}
-    if (!campaign && ignore_missing_campaign) {location = 'auth/campaign'}
+    if (!campaign && ignore_missing_campaign) {location = '/auth/campaign'}
     return {
       status: 303,
       headers: {location}
