@@ -5,36 +5,9 @@ const db = connection.db('ttrpg')
 
 export {cookie} from './cookie'
 
-export async function find(collection, query, projection) {
-  console.trace(`Depreciated - switch to col()`)
-  const coll = db.collection(collection)
-  const res = await coll.find(query, projection).toArray()
-  return {
-    body: res,
-    status: 200,
-  }
-}
-
-export async function updateOne(collection, filter, update, options) {
-  console.trace(`Depreciated - switch to col()`)
-  const coll = db.collection(collection)
-  return await coll.updateOne(filter, update, options)
-}
-
-export async function replaceOne(collection, filter, replacement, options) {
-  console.trace(`Depreciated - switch to col()`)
-  const coll = db.collection(collection)
-  const res = await coll.replaceOne(filter, replacement, options)
-  return {
-    body: res,
-    status: 200
-  }
-}
-
 export function col(collection, {request}, ignore_missing_user, ignore_missing_campaign) {
   const coll = db.collection(collection)
   const {user, campaign} = cookie(request)
-  console.log(user, campaign)
 
   function needed_info() {
     if (!user && !ignore_missing_user){return false}
@@ -81,13 +54,22 @@ export function col(collection, {request}, ignore_missing_user, ignore_missing_c
     const body = await coll.updateOne(filter, update, options)
     return {status: 200, body}
   }
-  async function insertOne(func) {
+  async function insertOne(func, with_time) {
     if (!needed_info()) {return redirect()}
     const data = await request.json()
+    if (with_time) {
+      data.time = await get_time(user, campaign)
+    }
     const {document} = func({user, campaign, data})
     verbose('Executing insertOne with', document)
     const body = await coll.insertOne(document)
     return {status: 200, body}
   }
   return {find, findOne, updateOne, insertOne}
+}
+
+async function get_time(user, campaign){
+  const coll = db.collection('campaign')
+  const data = await coll.findOne({'users.user': user, campaign})
+  return data.time
 }
