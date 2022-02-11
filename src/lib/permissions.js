@@ -2,7 +2,7 @@ import { campaign as store } from "./stores/campaign";
 import { get } from "svelte/store";
 import { parse } from "./db/cookie";
 
-export async function permission(key) {
+export function permission(key) {
   // FIXME maybe do this as a derived store?
   const campaign = get(store)
   if (typeof(document) === 'undefined'){return}
