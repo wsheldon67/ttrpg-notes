@@ -13,12 +13,12 @@ function create_store() {
     set: (time_ob, dontSave, as_is) => {
       const res = settle(time_ob, as_is)
       set(res)
-      if (!dontSave) {post('/time/set', res)}
+      if (!dontSave) {post('/app/time/set', res)}
     },
     set_unit: (amt, unit) => {
       update((old) => {
         const res = settle({...old, [unit]: amt})
-        post('/time/set', res)
+        post('/app/time/set', res)
         return res
       })
     },
@@ -27,7 +27,7 @@ function create_store() {
         const res = {...old}
         res[unit] += amt
         const settled = settle(res, true)
-        post('/time/set', settled)
+        post('/app/time/set', settled)
         return settled
       })
     },
@@ -40,7 +40,7 @@ function create_store() {
         res.minute = minute
         res.second = second
         const settled = settle(res, true)
-        post('/time/set', settled)
+        post('/app/time/set', settled)
         return settled
       })
     }

@@ -12,21 +12,12 @@ function create_store() {
   return {
     subscribe,
     set: (campaign_object, dontSave) => {
-      if(!dontSave){post('/campaign/new', campaign_object)}
+      if(!dontSave){post('/auth/campaign/set', campaign_object)}
       set(campaign_object)
     },
     update: (key, value) => {
       update(o => o[key] = value)
-      post('/campaign/update',{key, value})
-    },
-    get: async () => {
-      if (initialized) {return}
-      const camp_data = await post('/campaign/set')
-      console.log(camp_data)
-      set(camp_data)
-      time.set(camp_data.time)
-      settings.set(camp_data.settings)
-      initialized = true
+      post('/auth/campaign/update',{key, value})
     }
   }
 }

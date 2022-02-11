@@ -1,6 +1,5 @@
 <script>
   import { time } from '$lib/stores/time'
-import { get } from 'svelte/store'
 
   export let val
   export let txt
@@ -36,9 +35,6 @@ import { get } from 'svelte/store'
     background-color: inherit;
   }
 </style>
-{#await time.get()}
-Loading...
-{:then}
 <div class='cont'>
   <button class='minus' color='danger' on:click={minus}>-</button>
   <div class='label'>
@@ -46,4 +42,3 @@ Loading...
   </div>
   <button class='plus' color='success' on:click={plus}>+</button>
 </div>
-{/await}

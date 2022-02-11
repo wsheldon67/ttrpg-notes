@@ -7,14 +7,14 @@ function create_store() {
   return {
     subscribe,
     set: (settings_ob, dontSave) => {
-      if (!dontSave) {post('/settings/set',settings_ob)}
+      if (!dontSave) {post('/app/settings/set',settings_ob)}
       set(settings_ob)
     },
     update: (key, value) => {
       update(o => {
         return {...o, [key]: value}
       })
-      post('/settings/set-kv',{key, value})
+      post('/app/settings/set-kv',{key, value})
     }
   }
 }
