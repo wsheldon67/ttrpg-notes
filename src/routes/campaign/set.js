@@ -1,7 +1,5 @@
 import { col } from "$lib/db/server"
 
-// FIXME if data, use that.  if cookie, use that.  if neither, send to /campaign
-
 export async function post(r) {
   try {
     var campaign_name
@@ -9,7 +7,7 @@ export async function post(r) {
       if (typeof(data) === 'string') {campaign_name = data}
       else if (campaign) {campaign_name = campaign}
       return {
-        query: {user, campaign: campaign_name}
+        query: {'users.user':user, campaign: campaign_name}
       }
     })
     return {
