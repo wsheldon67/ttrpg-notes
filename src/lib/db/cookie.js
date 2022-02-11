@@ -1,7 +1,7 @@
 export function cookie(request) {
   return parse(request.headers.get('cookie'))
 }
-function parse(cookieString) {
+export function parse(cookieString) {
   let result = {};
   let cookies = cookieString ? cookieString.split('; ') : [];
 
