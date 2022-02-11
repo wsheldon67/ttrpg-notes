@@ -11,8 +11,8 @@
 </style>
 
 <a href='/auth/login'>Login</a>
-<a href='/time'>Time</a>
-<a href='/notes'>Notes</a>
-<a href='/campaign'>Switch Campaign</a>
+<a href='/app/time'>Time</a>
+<a href='/app/notes'>Notes</a>
+<a href='/auth/campaign'>Switch Campaign</a>
 
-<a href='/settings'>Settings</a>
+<a href='/app/settings'>Settings</a>
