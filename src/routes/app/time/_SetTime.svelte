@@ -2,7 +2,6 @@
   import {time, display_time} from "$lib/stores/time";
   import Icon from "$lib/c/Icon.svelte";
   import LzNumber from "$lib/c/LZNumber.svelte";
-import { get } from "svelte/store";
 
   function change(e, unit) {
     time.set_unit(e.detail, unit)
@@ -27,9 +26,6 @@ import { get } from "svelte/store";
     padding: .125em .25em;
   }
 </style>
-{#await time.get()}
-Loading...
-{:then}
 <div class='cont'>
   <Icon name='clock' />&nbsp;
   <LzNumber value={$display_time.year} on:change={e => change(e, 'year')} digits={4}/>/
@@ -45,4 +41,3 @@ Loading...
     </select>
   {/if}
 </div>
-{/await}

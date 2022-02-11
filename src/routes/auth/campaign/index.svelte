@@ -7,16 +7,12 @@
   import { time } from '$lib/stores/time'
 
   let promise = get('./all')
-  let campaign_name
-  function setCampaign(){
-    const camp_data = post('./set',campaign_name)
-    store.set(camp_data, true)
-    settings.set(camp_data.settings, true)
-    time.set(camp_data.time, true)
+  async function setCampaign(e){
+    await post('./set',e.target.value)
     goto('/app')
   }
 </script>
-<select on:change={setCampaign} bind:value={campaign_name}>
+<select on:change={setCampaign} >
   <option></option>
 {#await promise}
 Loading...

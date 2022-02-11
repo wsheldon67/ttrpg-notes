@@ -1,9 +1,9 @@
-import { col } from "$lib/db/server"
+import { col } from "$lib/db/server";
 
-export async function post(r) {
-  return await col('campaign',r).findOne(({user, campaign}) => {
+export async function get(r) {
+  return col('campaign',r).findOne(({user, campaign}) => {
     return {
-      query: {user, campaign}
+      query: {'users.user': user, campaign}
     }
   })
 }

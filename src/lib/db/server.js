@@ -64,7 +64,8 @@ export function col(collection, {request}, ignore_missing_user, ignore_missing_c
   }
   async function findOne(func) {
     if (!needed_info()) {return redirect()}
-    const data = await request.json()
+    try {var data = await request.json()}
+    catch {var data = undefined}
     const {query, projection} = func({user, campaign, data})
     verbose('Executing findOne with', query, projection)
     const body = await coll.findOne(query)
