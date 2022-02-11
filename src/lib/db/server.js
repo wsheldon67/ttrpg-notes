@@ -74,5 +74,13 @@ export function col(collection, {request}, ignore_missing_user, ignore_missing_c
     const body = await coll.updateOne(filter, update, options)
     return {status: 200, body}
   }
+  async function insertOne(func) {
+    if (!needed_info()) {return redirect()}
+    const data = await request.json()
+    const {document} = func({user, campaign, data})
+    verbose('Executing insertOne with', document)
+    const body = await coll.insertOne(document)
+    return {status: 200, body}
+  }
   return {find, findOne, updateOne}
 }

@@ -1,6 +1,7 @@
 import { goto } from "$app/navigation"
 
 export async function post(url, data={}) {
+  console.log(url)
   try {
     const res = await fetch(url,{
       method: 'POST',

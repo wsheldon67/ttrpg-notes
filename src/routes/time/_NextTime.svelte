@@ -15,7 +15,10 @@
     padding: .25em 1.25em;
   }
 </style>
-
+{#await time.get()}
+Loading...
+{:then}
 <button on:click={next}>
   {txt}
 </button>
+{/await}

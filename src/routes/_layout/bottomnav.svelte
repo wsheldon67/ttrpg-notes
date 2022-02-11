@@ -1,6 +1,7 @@
 <script>
   import Widget from './widget.svelte'
   import Time from '../time/Time.svelte'
+  import QuickNote from '../notes/_QuickNote.svelte'
   import { permission } from '$lib/permissions'
 
   const open = {
@@ -40,7 +41,7 @@
   </Widget>
   {/if}
   <Widget id='notes' icon='edit-3' tip='Make a note' on:click={click} show={open.notes}>
-    //TODO quick note
+    <QuickNote />
   </Widget>
   <Widget id='rules' icon='book-open' tip='Look up a rule' on:click={click} show={open.rules}>
     //TODO rule lookup
