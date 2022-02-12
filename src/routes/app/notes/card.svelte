@@ -1,18 +1,13 @@
 <script>
-import { time } from "$lib/pretty";
-
+  import { attributes } from './attributes'
 
   export let note = {}
-  const instructions = {
-    _id: 'ignore',
-    time: (o) => time(o)
-  }
   $: entries = arrayify()
   function arrayify() {
     const res = []
     for (let key in note) {
-      if (instructions[key] === 'ignore'){continue}
-      if (instructions[key]){var value = instructions[key](note[key])}
+      if (attributes[key] === 'ignore'){continue}
+      if (attributes[key]){var value = attributes[key](note[key])}
       else {var value = note[key]}
       res.push({key, value})
     }
