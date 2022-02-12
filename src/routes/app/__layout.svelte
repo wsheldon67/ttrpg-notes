@@ -13,7 +13,7 @@
       const camp = data.campaign
       user.set(data.user)
       campaign.set(camp, true)
-      time.set({...camp.time, settings: camp.settings.time},true)
+      time.set({...camp.time},true)
       settings.set(camp.settings, true)
       return {status: 204}
     } else {
