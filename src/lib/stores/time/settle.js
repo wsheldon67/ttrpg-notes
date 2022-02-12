@@ -8,7 +8,7 @@ export function settle(ob, as_is) {
     days_in_month,
     hours_in_day,
     one_based
-  } = ob.settings
+  } = get(settings).time
 
   const units = {
     'second': 60,
