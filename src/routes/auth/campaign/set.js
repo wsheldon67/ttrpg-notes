@@ -3,7 +3,7 @@ export async function post ({request}) {
   return {
     status: 200,
     headers: {
-      'set-cookie': `campaign=${campaign}; Path=/`
+      'set-cookie': `_id=${campaign}; Path=/`
     }
   }
 }

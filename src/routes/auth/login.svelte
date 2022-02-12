@@ -5,7 +5,7 @@
   let username
 
   function submit() {
-    post('/auth/login', username)
+    post('/auth/set', username)
     .then(() => {goto('./campaign')})
   }
   // TODO login

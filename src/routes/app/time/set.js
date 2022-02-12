@@ -1,9 +1,9 @@
 import { col } from "$lib/db/server";
 
 export async function post(r) {
-  return col('campaign',r).updateOne(({user, campaign, data}) => {
+  return col('campaign',r).updateOne(({user, _id, data}) => {
     return {
-      filter: {user, campaign},
+      filter: {user, _id},
       update: {$set:{time: data}}
     }
   })

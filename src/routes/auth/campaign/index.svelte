@@ -14,7 +14,7 @@
 Loading...
 {:then campaigns}
 {#each campaigns as campaign}
-  <option>{campaign.campaign}</option>
+  <option value={campaign._id}>{campaign.campaign}</option>
 {/each}
 {/await}
 </select>
