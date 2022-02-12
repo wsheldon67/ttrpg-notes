@@ -6,7 +6,7 @@
   function change(e, unit) {
     time.set_unit(e.detail, unit)
   }
-  
+  // FIXME setting AM/PM does nothing
 </script>
 
 <style>
