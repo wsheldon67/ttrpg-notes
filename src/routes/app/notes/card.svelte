@@ -1,8 +1,11 @@
 <script>
+import { time } from "$lib/pretty";
+
+
   export let note = {}
   const instructions = {
     _id: 'ignore',
-    time: (o) => JSON.stringify(o)
+    time: (o) => time(o)
   }
   $: entries = arrayify()
   function arrayify() {
