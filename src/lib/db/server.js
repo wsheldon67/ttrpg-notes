@@ -29,7 +29,7 @@ export function col(collection, {request}, ignore_missing_user, ignore_missing_c
     try {var data = await request.json()}
     catch {var data = undefined}
     finally {
-      const {query, projection} = func({user, campaign, data})
+      const {query, projection} = await func({user, campaign, data})
       verbose(`Executing find with`,query, projection)
       const body = await coll.find(query).project(projection||{}).toArray()
       verbose('Responding with', body)
@@ -40,7 +40,7 @@ export function col(collection, {request}, ignore_missing_user, ignore_missing_c
     if (!needed_info()) {return redirect()}
     try {var data = await request.json()}
     catch {var data = undefined}
-    const {query, projection} = func({user, campaign, data})
+    const {query, projection} = await func({user, campaign, data})
     verbose('Executing findOne with', query, projection)
     const body = await coll.findOne(query)
     verbose('Responding with', body)
@@ -49,7 +49,7 @@ export function col(collection, {request}, ignore_missing_user, ignore_missing_c
   async function updateOne(func) {
     if (!needed_info()) {return redirect()}
     const data = await request.json()
-    const {filter, update, options} = func({user, campaign, data})
+    const {filter, update, options} = await func({user, campaign, data})
     verbose(`Executing updateOne with`, filter, update, options)
     const body = await coll.updateOne(filter, update, options)
     return {status: 200, body}
@@ -60,7 +60,7 @@ export function col(collection, {request}, ignore_missing_user, ignore_missing_c
     if (with_time) {
       data.time = await get_time(user, campaign)
     }
-    const {document} = func({user, campaign, data})
+    const {document} = await func({user, campaign, data})
     verbose('Executing insertOne with', document)
     const body = await coll.insertOne(document)
     return {status: 200, body}
@@ -72,4 +72,12 @@ async function get_time(user, campaign){
   const coll = db.collection('campaign')
   const data = await coll.findOne({'users.user': user, campaign})
   return data.time
+}
+
+export async function permission(user, campaign, key) {
+  const coll = db.collection('campaign')
+  const data = await coll.findOne({'users.user': user, campaign})
+  const srole = data.users.find(el => el.user === user).role
+  if (srole === 'owner'){return true}
+  return data.roles[srole][key]
 }

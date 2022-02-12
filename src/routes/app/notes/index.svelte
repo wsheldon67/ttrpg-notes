@@ -1,6 +1,6 @@
 <script>
   import { post } from '$lib/db/client'
-  let promise = post('/notes/all')
+  let promise = post('/app/notes/all')
   // TODO notes with attributes
   // notes with the same "type" have the same base required attributes, which can be consistently searched/used in UI
 </script>
