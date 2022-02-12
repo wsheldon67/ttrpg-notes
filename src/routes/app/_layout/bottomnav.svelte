@@ -2,7 +2,7 @@
   import Widget from './widget.svelte'
   import Time from '../time/Time.svelte'
   import QuickNote from '../notes/_QuickNote.svelte'
-  import { permission } from '$lib/permissions'
+  import { permission, get } from '$lib/stores/permission'
 
   const open = {
     time: false,
@@ -35,7 +35,7 @@
 </style>
 
 <nav>
-  {#if permission('set_time')}
+  {#if get($permission,'set_time')}
   <Widget id='time' icon='clock' tip='Adjust game time' on:click={click} show={open.time}>
     <Time />
   </Widget>

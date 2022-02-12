@@ -3,6 +3,7 @@ import { get } from "svelte/store";
 import { parse } from "./db/cookie";
 
 export function permission(key) {
+  console.trace('Depreciated, please use the derived store.')
   const campaign = get(store)
   if (typeof(document) === 'undefined'){return}
   const user = parse(document.cookie).user
@@ -12,6 +13,7 @@ export function permission(key) {
 }
 
 export function role() {
+  console.trace('Depreciated, please use the derived store.')
   const campaign = get(store)
   if (typeof(document) === 'undefined'){return}
   const user = parse(document.cookie).user

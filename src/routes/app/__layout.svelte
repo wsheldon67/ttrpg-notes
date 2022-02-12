@@ -2,13 +2,16 @@
   import {campaign} from '$lib/stores/campaign'
   import {settings} from '$lib/stores/settings'
   import {time} from '$lib/stores/time'
+  import { user } from '$lib/stores/user';
   export async function load({fetch}) {
     const res = await fetch('/auth/campaign/by-name',{
       method: 'GET'
     })
     if (res.ok){
-      try{var camp = await res.json()}
+      try{var data = await res.json()}
       catch {return {props: {redirect: true}}}
+      const camp = data.campaign
+      user.set(data.user)
       campaign.set(camp, true)
       time.set({...camp.time, settings: camp.settings.time},true)
       settings.set(camp.settings, true)
