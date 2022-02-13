@@ -9,6 +9,7 @@
   div {
     background-color: var(--b2);
     margin: .5em;
+    padding: .5em;
   }
 </style>
 
