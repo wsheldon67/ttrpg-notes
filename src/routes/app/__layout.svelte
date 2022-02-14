@@ -4,6 +4,7 @@
   import {time} from '$lib/stores/time'
   import { user } from '$lib/stores/user';
   export async function load({fetch, session}) {
+    console.log(session.user, session._id)
     if (!session.user) {return {status: 302, redirect: `/auth/login`}}
     if (!session._id) {return {status: 302, redirect: `/auth/campaign`}}
     const res = await fetch('/auth/campaign/by-name',{

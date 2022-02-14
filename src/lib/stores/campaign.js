@@ -10,6 +10,7 @@ function create_store() {
     set: (campaign_object, dontSave) => {
       if(!dontSave){post('/auth/campaign/set', campaign_object)}
       set(campaign_object)
+      console.log('campaign store was set')
     },
     update: (key, value) => {
       update(o => o[key] = value)
