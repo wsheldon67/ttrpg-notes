@@ -9,13 +9,13 @@ export async function handle ({event, resolve}) {
   const cookies = parse(event.request.headers.get('cookie') || '')
   console.log('hook cookies:', cookies)
   event.locals.user = cookies.user || ''
-  event.locals.campaign = cookies.campaign || ''
+  event.locals._id = cookies._id || ''
   return resolve(event)
 }
 
 export function getSession({locals}) {
   return {
     user: locals.user,
-    campaign: locals.campaign
+    _id: locals._id
   }
 }
