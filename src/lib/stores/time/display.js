@@ -16,7 +16,6 @@ export function display($time) {
       dob.suffix = 'AM'
     }
   }
-
   if (one_based) {
     dob.day++
     dob.month++

@@ -18,7 +18,7 @@
       user.set(data.user)
       campaign.set(camp, true)
       settings.set(camp.settings, true)
-      time.set({...camp.time},true)
+      time.set({...camp.time}, true, true)
       return {status: 204}
     } else {
       return res
