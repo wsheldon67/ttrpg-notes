@@ -3,10 +3,14 @@
   import {settings} from '$lib/stores/settings'
   import {time} from '$lib/stores/time'
   import { user } from '$lib/stores/user';
-  export async function load({fetch}) {
+  export async function load({fetch, session}) {
+    console.log('this should run first thing')
+    if (!session.user) {return {status: 302, redirect: `/auth/login`}}
+    if (!session.campaign) {return {status: 302, redirect: `/auth/campaign`}}
     const res = await fetch('/auth/campaign/by-name',{
       method: 'GET'
     })
+    console.log(res.status)
     if (res.ok){
       try{var data = await res.json()}
       catch {return {props: {redirect: true}}}
