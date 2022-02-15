@@ -4,5 +4,11 @@ export const cats = {
       title: 'Quick Note',
       attributes: {}
     }
+  },
+  npc: (note) => {
+    return {
+      title: `NPC - ${note.name}`,
+      attributes: {}
+    }
   }
 }

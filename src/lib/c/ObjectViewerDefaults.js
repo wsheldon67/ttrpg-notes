@@ -6,5 +6,6 @@ export const defaults = {
   _id: 'ignore',
   campaign: 'ignore',
   type: 'ignore',
+  body: 'ignore',
   time: (o) => pretty.time(o, get(settings).time),
 }
