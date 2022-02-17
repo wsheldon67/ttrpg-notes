@@ -8,7 +8,9 @@ export const cats = {
   npc: (note) => {
     return {
       title: `NPC - ${note.name}`,
-      attributes: {}
+      attributes: {
+        name: 'ignore'
+      }
     }
   }
 }
