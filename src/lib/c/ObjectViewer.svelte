@@ -1,12 +1,14 @@
 <script>
   import { defaults } from './ObjectViewerDefaults'
-  // TODO deeper nested objects
+  import Collapse from './Collapse.svelte'
   // TODO collapse long text, overridable
 
   export let object = {}
   export let attributes = {}
   let comboAttr = {...defaults, ...attributes}
+
   $: entries = arrayify()
+
   function arrayify() {
     const res = []
     for (let key in object) {
@@ -20,16 +22,28 @@
     }
     return res
   }
+
 </script>
 <style>
-  div {
+  .reg {
     display: grid;
     grid-template-columns: 1fr 3fr;
   }
 </style>
+
 {#each entries as entry}
-  <div>
+  {#if typeof(entry.value) === 'object'}
+    <Collapse label={entry.key}>
+      <svelte:self object={entry.value} />
+    </Collapse>
+  {:else if entry.value.length > 50}
+    <Collapse label={entry.key}>
+      {entry.value}
+    </Collapse>
+  {:else}
+  <div class='reg'>
     <span>{entry.key}</span>
     <span>{entry.value}</span>
   </div>
+  {/if}
 {/each}
